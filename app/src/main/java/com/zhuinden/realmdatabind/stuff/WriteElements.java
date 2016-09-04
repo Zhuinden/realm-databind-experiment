@@ -1,6 +1,10 @@
 package com.zhuinden.realmdatabind.stuff;
 
+import android.os.Bundle;
 import android.os.Looper;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.zhuinden.realmdatabind.realm.objects.Post;
@@ -85,4 +89,34 @@ public class WriteElements {
         post.setText("William Shakespeare - Hamlet");
         Log.i(TAG, "William Shakespeare - Hamlet");
     };
+
+
+    ///
+
+
+    public static void setupWriteFragment(AppCompatActivity activity) {
+        WriteFragment writeFragment = (WriteFragment) activity.getSupportFragmentManager().findFragmentByTag("WRITE_FRAGMENT");
+        if(writeFragment == null) {
+            writeFragment = new WriteFragment();
+            activity.getSupportFragmentManager().beginTransaction().add(writeFragment, "WRITE_FRAGMENT").commit();
+        }
+    }
+
+    public static class WriteFragment
+            extends Fragment {
+        public WriteFragment() {
+            setRetainInstance(true);
+        }
+
+        @Override
+        public void onCreate(@Nullable Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            new WriteElements().write();
+        }
+
+        @Override
+        public void onDestroy() {
+            super.onDestroy();
+        }
+    }
 }
