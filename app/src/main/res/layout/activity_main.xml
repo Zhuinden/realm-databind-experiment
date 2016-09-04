@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable name="post" type="com.zhuinden.realmdatabind.realm.objects.Post"/>
+        <variable name="activity" type="com.zhuinden.realmdatabind.activity.MainActivity"/>
+    </data>
+    <RelativeLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:layout_height="wrap_content"
+            android:text="@{post.text}"/>
+
+        <Button
+            android:id="@+id/click_for_second_view"
+            android:text="Click me for second view!"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:onClick="@{(v) -> activity.startNextActivity(v)}" />
+    </RelativeLayout>
+</layout>
